@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐾PetCare Pro</title>
+  <meta name="description" content="Banho e tosa, acessórios, rações premium e atendimento especializado para seu pet.">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="toastContainer"></div>
+
+  <div id="loader">
+    <div class="loader-paw">🐾</div>
+    <p>Carregando PetCare Pro...</p>
+  </div>
+
+  <div class="login-modal" id="loginModal">
+    <div class="login-box">
+      <button class="close" id="closeLogin">×</button>
+      <h2>Entrar na conta</h2>
+      <p>Acesse sua área admin.</p>
+
+      <input type="email" id="loginEmail" placeholder="E-mail">
+      <input type="password" id="loginPassword" placeholder="Senha">
+
+      <button class="btn primary" id="loginBtn">Entrar</button>
+
+      
+    </div>
+  </div>
+
+  <div class="product-modal" id="productModal">
+    <div class="product-modal-box">
+      <button class="close" id="closeProductModal">×</button>
+      <div id="productModalContent"></div>
+    </div>
+  </div>
+
+  <button id="darkModeBtn" class="dark-mode-btn">🌙</button>
+
+  <header class="header" id="topo">
+    <nav class="navbar container">
+      <a href="#topo" class="logo">🐾 PetCare <span>Pro</span></a>
+
+      <button class="menu-btn" id="menuBtn">☰</button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" id="openLogin">Admin</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#produtos">Produtos</a></li>
+        <li><a href="#agendamento">Agendamento</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+
+      <button class="cart-btn" id="cartBtn">
+        🛒 <span id="cartCount">0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="client-area" id="clientArea">
+      <h2>Área do Cliente</h2>
+      <p>Bem-vindo! Aqui apareceriam seus pedidos e agendamentos.</p>
+    </section>
+
+    <section class="admin-area" id="adminArea">
+
+      <h2>Painel Administrativo</h2>
+      <p>Cadastre, edite e exclua produtos da loja.</p>
+
+      <div class="admin-dashboard">
+        <div class="dashboard-card">
+          <span>📦</span>
+          <h3 id="totalProducts">0</h3>
+          <p>Produtos</p>
+        </div>
+
+        <div class="dashboard-card">
+          <span>🛒</span>
+          <h3 id="totalOrders">0</h3>
+          <p>Pedidos</p>
+        </div>
+
+        <div class="dashboard-card">
+          <span>👥</span>
+          <h3 id="totalClients">0</h3>
+          <p>Clientes</p>
+        </div>
+
+        <div class="dashboard-card">
+          <span>💰</span>
+          <h3 id="totalRevenue">R$ 0,00</h3>
+          <p>Faturamento</p>
+        </div>
+      </div>
+
+      <h3 class="admin-subtitle">Relatório de Vendas</h3>
+
+      <div class="sales-report">
+        <div>
+          <h4>Faturamento por Pedido</h4>
+          <div id="salesChart" class="sales-chart"></div>
+        </div>
+
+        <div>
+          <h4>Produtos Mais Vendidos</h4>
+          <div id="topProducts" class="top-products"></div>
+        </div>
+      </div>
+
+
+
+      <h3 class="admin-subtitle">Histórico de Pedidos</h3>
+      <div id="ordersList" class="orders-list"></div>
+
+      <h3 class="admin-subtitle">Gerenciar Produtos</h3>
+
+      <div class="admin-form">
+        <input type="hidden" id="editingProductId">
+        <input type="text" id="adminName" placeholder="Nome do produto">
+        <input type="number" id="adminPrice" placeholder="Preço">
+
+        <select id="adminCategory">
+          <option value="racao">Ração</option>
+          <option value="brinquedo">Brinquedo</option>
+          <option value="acessorio">Acessório</option>
+          <option value="higiene">Higiene</option>
+        </select>
+
+        <input type="file" id="adminImageFile" accept="image/*">
+        <textarea id="adminDescription" placeholder="Descrição do produto"></textarea>
+
+        <button class="btn primary" id="saveProductBtn">Salvar Produto</button>
+        <button class="btn secondary" id="cancelEditBtn" type="button">Cancelar Edição</button>
+      </div>
+
+      <div id="adminProducts"></div>
+
+    </section>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="tag">Pet Shop Premium</p>
+          <h1>O melhor cuidado para seu melhor amigo.</h1>
+          <p class="hero-text">
+            Banho e tosa, consultas, hotelzinho, produtos premium e atendimento especializado.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#agendamento" class="btn primary">Agendar Agora</a>
+            <a href="#produtos" class="btn secondary">Ver Produtos</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="dog-slider">
+            <div class="dog-slider-track" id="dogSliderTrack">
+              <img src="assets/cachorro.jpeg" alt="Cachorro 1">
+              <img src="assets/gato.jpeg" alt="Cachorro 2">
+              <img src="assets/gato-shadow.jpeg" alt="Cachorro 3">
+              <img src="assets/WhatsApp Image 2026-06-13 at 13.36.54.jpeg" alt="Cachorro 4">
+            </div>
+          </div>
+
+          
+          <p>Banho + hidratação com <strong>15% OFF</strong> para novos clientes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div>🚚 Entrega Rápida</div>
+      <div>💳 Pagamento Seguro</div>
+      <div>🐾 Atendimento Especializado</div>
+      <div>⭐ Avaliação 4.9/5</div>
+    </section>
+
+    <section class="stats container">
+      <div>
+        <strong>+2500</strong>
+        <span>Pets atendidos</span>
+      </div>
+
+      <div>
+        <strong>4.9★</strong>
+        <span>Avaliação média</span>
+      </div>
+
+      <div>
+        <strong>24h</strong>
+        <span>Resposta rápida</span>
+      </div>
+    </section>
+
+    <section class="section container" id="servicos">
+      <div class="section-title">
+        <p class="tag">Nossos Serviços</p>
+        <h2>Cuidado completo para seu pet</h2>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <span>🛁</span>
+          <h3>Banho e Tosa</h3>
+          <p>Higiene completa e hidratação.</p>
+        </article>
+
+        <article class="card">
+          <span>🩺</span>
+          <h3>Veterinário</h3>
+          <p>Acompanhamento especializado.</p>
+        </article>
+
+        <article class="card">
+          <span>🏠</span>
+          <h3>Hotelzinho</h3>
+          <p>Conforto e segurança.</p>
+        </article>
+
+        <article class="card">
+          <span>🚚</span>
+          <h3>Delivery</h3>
+          <p>Entrega rápida para sua casa.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section products-section" id="produtos">
+      <div class="container">
+        <div class="section-title">
+          <p class="tag">Loja Online</p>
+          <h2>Produtos em Destaque</h2>
+        </div>
+
+        <div class="filters">
+          <input type="search" id="searchInput" placeholder="Buscar produto...">
+
+          <select id="categoryFilter">
+            <option value="todos">Todas Categorias</option>
+            <option value="racao">Rações</option>
+            <option value="brinquedo">Brinquedos</option>
+            <option value="acessorio">Acessórios</option>
+            <option value="higiene">Higiene</option>
+          </select>
+        </div>
+
+        <div class="product-grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-title">
+        <p class="tag">Pets Felizes</p>
+        <h2>Nossos Clientes</h2>
+      </div>
+
+      <div class="gallery-grid">
+        <img src="assets/trabalho1.jpeg" alt="Pet feliz">
+        <img src="assets/trabalho1.jpeg" alt="Pet feliz">
+        <img src="assets/trabalho1.jpeg" alt="Pet feliz">
+        <img src="assets/trabalho1.jpeg" alt="Pet feliz">
+      </div>
+    </section>
+
+    <section class="section container" id="agendamento">
+      <div class="booking">
+        <div>
+          <p class="tag">Agendamento Online</p>
+          <h2>Marque um horário</h2>
+          <p>Preencha os dados e envie diretamente pelo WhatsApp.</p>
+        </div>
+
+        <form id="bookingForm" class="form">
+          <input type="text" id="nome" placeholder="Seu nome" required>
+          <input type="text" id="pet" placeholder="Nome do pet" required>
+
+          <select id="servico" required>
+            <option value="">Escolha um serviço</option>
+            <option>Banho e Tosa</option>
+            <option>Consulta Veterinária</option>
+            <option>Hotelzinho</option>
+            <option>Delivery</option>
+          </select>
+
+          <input type="date" id="data" required>
+          <input type="time" id="hora" required>
+
+          <button class="btn primary" type="submit">Enviar pelo WhatsApp</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <aside class="cart-modal" id="cartModal">
+    <div class="cart-box">
+      <button class="close" id="closeCart">×</button>
+
+      <h2>Seu carrinho</h2>
+      <div id="cartItems"></div>
+
+      <h3>Total: R$ <span id="cartTotal">0,00</span></h3>
+
+      <button class="btn secondary" id="clearCartBtn" onclick="clearCart()">
+        🗑️ Limpar carrinho
+      </button>
+
+      <button class="btn primary" id="checkoutBtn">
+        📱 Finalizar pelo WhatsApp
+      </button>
+    </div>
+  </aside>
+
+  <button id="topBtn">↑</button>
+
+  <a class="whatsapp" href="https://wa.me/5511999999999" target="_blank">💬</a>
+
+  <footer class="footer" id="contato">
+    <div>
+      <h3>PetCare Pro</h3>
+      <p>Amor, cuidado e dedicação para seu melhor amigo.</p>
+    </div>
+
+    <div>
+      <h4>Links</h4>
+      <a href="#servicos">Serviços</a>
+      <a href="#produtos">Produtos</a>
+      <a href="#agendamento">Agendamento</a>
+    </div>
+
+    <div>
+      <h4>Contato</h4>
+      <p>(11) 99999-9999</p>
+      <p>@petcarepro</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
